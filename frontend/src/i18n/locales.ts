@@ -1,4 +1,4 @@
-import arabic from "./translations/ar-EG";
+import arabic from "./translations/ar";
 import czech from "./translations/cs-CZ";
 import danish from "./translations/da-DK";
 import german from "./translations/de-DE";
@@ -136,7 +136,7 @@ export const LOCALES = {
   },
   ARABIC: {
     name: "العربية",
-    code: "ar-EG",
+    code: "ar",
     messages: arabic,
   },
   HUNGARIAN: {

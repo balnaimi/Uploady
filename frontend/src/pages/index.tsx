@@ -17,6 +17,7 @@ import Logo from "../components/Logo";
 import Meta from "../components/Meta";
 import useUser from "../hooks/user.hook";
 import useConfig from "../hooks/config.hook";
+import useTranslate from "../hooks/useTranslate.hook";
 
 const useStyles = createStyles((theme) => ({
   inner: {
@@ -24,15 +25,15 @@ const useStyles = createStyles((theme) => ({
     justifyContent: "space-between",
     paddingTop: `calc(${theme.spacing.md} * 4)`,
     paddingBottom: `calc(${theme.spacing.md} * 4)`,
+    gap: `calc(${theme.spacing.md} * 3)`,
   },
 
   content: {
     maxWidth: 480,
-    marginInlineEnd: `calc(${theme.spacing.md} * 3)`,
+    flex: 1,
 
     [theme.fn.smallerThan("md")]: {
       maxWidth: "100%",
-      marginInlineEnd: 0,
     },
   },
 
@@ -57,6 +58,7 @@ const useStyles = createStyles((theme) => ({
     [theme.fn.smallerThan("md")]: {
       display: "none",
     },
+    flexShrink: 0,
   },
 
   highlight: {
@@ -75,6 +77,7 @@ export default function Home() {
   const { refreshUser } = useUser();
   const router = useRouter();
   const config = useConfig();
+  const t = useTranslate();
   const [signupEnabled, setSignupEnabled] = useState(true);
 
   // If user is already authenticated, redirect to the upload page
@@ -100,7 +103,7 @@ export default function Home() {
 
   return (
     <>
-      <Meta title="Home" />
+      <Meta title={t("navbar.home")} />
       <Container>
         <div className={classes.inner}>
           <div className={classes.content}>

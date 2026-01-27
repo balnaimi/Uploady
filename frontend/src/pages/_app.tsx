@@ -210,11 +210,7 @@ App.getInitialProps = async ({ ctx }: { ctx: GetServerSidePropsContext }) => {
 
     pageProps.route = ctx.req.url;
 
-    const requestLanguage = i18nUtil.getLanguageFromAcceptHeader(
-      ctx.req.headers["accept-language"],
-    );
-
-    pageProps.language = ctx.req.cookies["language"] ?? requestLanguage;
+    pageProps.language = ctx.req.cookies["language"] ?? "ar";
   }
   return { pageProps };
 };

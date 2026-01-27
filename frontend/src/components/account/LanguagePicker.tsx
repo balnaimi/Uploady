@@ -19,7 +19,7 @@ const LanguagePicker = () => {
       value={selectedLanguage}
       description={t("account.card.language.description")}
       onChange={(value) => {
-        setSelectedLanguage(value ?? "en");
+        setSelectedLanguage(value ?? "ar");
         setCookie("language", value, {
           sameSite: "lax",
           expires: new Date(

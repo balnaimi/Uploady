@@ -2,33 +2,29 @@ import { setCookie } from "cookies-next";
 import { LOCALES } from "../i18n/locales";
 
 const getLocaleByCode = (code: string) => {
-  return Object.values(LOCALES).find((l) => l.code === code) ?? LOCALES.ENGLISH;
+  return Object.values(LOCALES).find((l) => l.code === code) ?? LOCALES.ARABIC;
 };
 
 // Parse the Accept-Language header and return the first supported language
+// Only supports Arabic (ar) and English (en-US)
 const getLanguageFromAcceptHeader = (acceptLanguage?: string) => {
-  if (!acceptLanguage) return "en";
+  if (!acceptLanguage) return "ar";
 
-  const languages = acceptLanguage.split(",").map((l) => l.split(";")[0]);
-  const supportedLanguages = Object.values(LOCALES).map((l) => l.code);
-  const supportedLanguagesWithoutRegion = supportedLanguages.map(
-    (l) => l.split("-")[0],
-  );
+  const languages = acceptLanguage.split(",").map((l) => l.split(";")[0].trim().toLowerCase());
 
   for (const language of languages) {
-    // Try to match the full language code first, then the language code without the region
-    if (supportedLanguages.includes(language)) {
-      return language;
-    } else if (
-      supportedLanguagesWithoutRegion.includes(language.split("-")[0])
-    ) {
-      const similarLanguage = supportedLanguages.find((l) =>
-        l.startsWith(language.split("-")[0]),
-      );
-      return similarLanguage;
+    // Check for Arabic (ar or ar-*)
+    if (language === "ar" || language.startsWith("ar-")) {
+      return "ar";
+    }
+    // Check for English (en or en-*)
+    if (language === "en" || language.startsWith("en-")) {
+      return "en-US";
     }
   }
-  return "en";
+  
+  // Default to Arabic
+  return "ar";
 };
 
 const isLanguageSupported = (code: string) => {
@@ -42,9 +38,15 @@ const setLanguageCookie = (code: string) => {
   });
 };
 
+const getDirectionByCode = (code: string): "rtl" | "ltr" => {
+  const locale = getLocaleByCode(code);
+  return locale?.direction ?? "rtl";
+};
+
 export default {
   getLocaleByCode,
   getLanguageFromAcceptHeader,
   isLanguageSupported,
   setLanguageCookie,
+  getDirectionByCode,
 };

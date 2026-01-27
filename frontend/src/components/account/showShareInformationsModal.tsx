@@ -77,7 +77,7 @@ const showShareInformationsModal = (
 
         <Flex align="center" justify="center">
           {share.size / maxShareSize < 0.1 && (
-            <Text size="xs" style={{ marginRight: "4px" }}>
+            <Text size="xs" style={{ marginInlineEnd: "4px" }}>
               {formattedShareSize}
             </Text>
           )}
@@ -88,7 +88,7 @@ const showShareInformationsModal = (
             size="xl"
             radius="xl"
           />
-          <Text size="xs" style={{ marginLeft: "4px" }}>
+          <Text size="xs" style={{ marginInlineStart: "4px" }}>
             {formattedMaxShareSize}
           </Text>
         </Flex>

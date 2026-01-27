@@ -1,14 +1,20 @@
 import { createGetInitialProps } from "@mantine/next";
 import Document, { Head, Html, Main, NextScript } from "next/document";
+import i18nUtil from "../utils/i18n.util";
 
 const getInitialProps = createGetInitialProps();
 
-export default class _Document extends Document {
-  static getInitialProps = getInitialProps;
+export default class _Document extends Document<{ dir?: string }> {
+  static getInitialProps = async (ctx: any) => {
+    const initialProps = await getInitialProps(ctx);
+    const language = ctx.req?.cookies?.["language"] ?? "ar";
+    const direction = i18nUtil.getDirectionByCode(language);
+    return { ...initialProps, dir: direction };
+  };
 
   render() {
     return (
-      <Html>
+      <Html dir={this.props.dir || "rtl"}>
         <Head>
           <link rel="manifest" href="/manifest.json" />
           <link rel="icon" type="image/x-icon" href="/img/favicon.ico" />

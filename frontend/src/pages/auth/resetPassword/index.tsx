@@ -97,7 +97,7 @@ const ResetPassword = () => {
             >
               <Center inline>
                 <TbArrowLeft size={12} />
-                <Box ml={5}>
+                <Box sx={{ marginInlineStart: 5 }}>
                   <FormattedMessage id="resetPassword.button.back" />
                 </Box>
               </Center>

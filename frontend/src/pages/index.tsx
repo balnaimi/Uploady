@@ -28,11 +28,11 @@ const useStyles = createStyles((theme) => ({
 
   content: {
     maxWidth: 480,
-    marginRight: `calc(${theme.spacing.md} * 3)`,
+    marginInlineEnd: `calc(${theme.spacing.md} * 3)`,
 
     [theme.fn.smallerThan("md")]: {
       maxWidth: "100%",
-      marginRight: 0,
+      marginInlineEnd: 0,
     },
   },
 

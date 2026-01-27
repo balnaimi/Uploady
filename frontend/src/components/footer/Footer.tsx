@@ -27,7 +27,7 @@ const Footer = () => {
     <MFooter height="auto" py={6} px="xl" zIndex={100}>
       <SimpleGrid cols={isMobile ? 2 : 3} m={0}>
         {!isMobile && <div></div>}
-        <Text size="xs" color="dimmed" align={isMobile ? "left" : "center"}>
+        <Text size="xs" color="dimmed" align={isMobile ? "start" : "center"}>
           Powered by{" "}
           <Anchor
             size="xs"
@@ -39,7 +39,7 @@ const Footer = () => {
         </Text>
         <div>
           {config.get("legal.enabled") && (
-            <Text size="xs" color="dimmed" align="right">
+            <Text size="xs" color="dimmed" align="end">
               {hasImprint && (
                 <Anchor size="xs" href={imprintUrl}>
                   {t("imprint.title")}

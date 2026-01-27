@@ -16,8 +16,8 @@ const GlobalStyle = () => {
                 : "rgba(220, 220, 220, 0.5)",
           },
         "table.md td": {
-          paddingLeft: "0.5em",
-          paddingRight: "0.5em",
+          paddingInlineStart: "0.5em",
+          paddingInlineEnd: "0.5em",
         },
       })}
     />

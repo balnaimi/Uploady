@@ -10,7 +10,7 @@ import { PrismaService } from "src/prisma/prisma.service";
 import { ShareService } from "src/share/share.service";
 import { ConfigService } from "src/config/config.service";
 import { JwtGuard } from "src/auth/guard/jwt.guard";
-import { User } from "@prisma/client";
+import { Prisma, User } from "@prisma/client";
 
 @Injectable()
 export class ShareSecurityGuard extends JwtGuard {
@@ -25,12 +25,12 @@ export class ShareSecurityGuard extends JwtGuard {
   async canActivate(context: ExecutionContext) {
     const request: Request = context.switchToHttp().getRequest();
 
-    const shareId = Object.prototype.hasOwnProperty.call(
+    const shareId = (Object.prototype.hasOwnProperty.call(
       request.params,
       "shareId",
     )
       ? request.params.shareId
-      : request.params.id;
+      : request.params.id) as string;
 
     const shareToken = request.cookies[`share_${shareId}_token`];
 
@@ -46,13 +46,18 @@ export class ShareSecurityGuard extends JwtGuard {
     )
       throw new NotFoundException("Share not found");
 
-    if (share.security?.password && !shareToken)
+    type ShareWithRelations = Prisma.ShareGetPayload<{
+      include: { security: true; reverseShare: true };
+    }>;
+    const shareWithRelations = share as ShareWithRelations;
+
+    if (shareWithRelations.security?.password && !shareToken)
       throw new ForbiddenException(
         "This share is password protected",
         "share_password_required",
       );
 
-    if (!(await this.shareService.verifyShareToken(shareId, shareToken)))
+    if (!(await this.shareService.verifyShareToken(shareId as string, shareToken)))
       throw new ForbiddenException(
         "Share token required",
         "share_token_required",
@@ -64,10 +69,10 @@ export class ShareSecurityGuard extends JwtGuard {
 
     // Only the creator and reverse share creator can access the reverse share if it's not public
     if (
-      share.reverseShare &&
-      !share.reverseShare.publicAccess &&
-      share.creatorId !== user?.id &&
-      share.reverseShare.creatorId !== user?.id
+      shareWithRelations.reverseShare &&
+      !shareWithRelations.reverseShare.publicAccess &&
+      shareWithRelations.creatorId !== user?.id &&
+      shareWithRelations.reverseShare.creatorId !== user?.id
     )
       throw new ForbiddenException(
         "Only reverse share creator can access this share",

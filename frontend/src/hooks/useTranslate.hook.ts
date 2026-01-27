@@ -9,7 +9,8 @@ const useTranslate = () => {
     values?: Parameters<typeof intl.formatMessage>[1],
     opts?: Parameters<typeof intl.formatMessage>[2],
   ) => {
-    return intl.formatMessage({ id }, values, opts) as string;
+    const result = intl.formatMessage({ id }, values, opts);
+    return typeof result === 'string' ? result : String(result);
   };
 };
 
@@ -23,7 +24,7 @@ export const translateOutsideContext = () => {
     {
       locale,
       messages: i18nUtil.getLocaleByCode(locale)?.messages,
-      defaultLocale: "en",
+      defaultLocale: "ar",
     },
     cache,
   );
@@ -32,7 +33,8 @@ export const translateOutsideContext = () => {
     values?: Parameters<typeof intl.formatMessage>[1],
     opts?: Parameters<typeof intl.formatMessage>[2],
   ) => {
-    return intl.formatMessage({ id }, values, opts) as string;
+    const result = intl.formatMessage({ id }, values, opts);
+    return typeof result === 'string' ? result : String(result);
   };
 };
 

@@ -19,6 +19,7 @@ import useUser from "../../hooks/user.hook";
 import useTranslate from "../../hooks/useTranslate.hook";
 import Logo from "../Logo";
 import ActionAvatar from "./ActionAvatar";
+import LanguageSelector from "./LanguageSelector";
 import NavbarShareMenu from "./NavbarShareMenu";
 
 const HEADER_HEIGHT = 60;
@@ -42,8 +43,8 @@ const useStyles = createStyles((theme) => ({
     left: 0,
     right: 0,
     zIndex: 0,
-    borderTopRightRadius: 0,
-    borderTopLeftRadius: 0,
+    borderTopStartRadius: 0,
+    borderTopEndRadius: 0,
     borderTopWidth: 0,
     overflow: "hidden",
 
@@ -132,6 +133,9 @@ const Header = () => {
       component: <NavbarShareMenu />,
     },
     {
+      component: <LanguageSelector />,
+    },
+    {
       component: <ActionAvatar />,
     },
   ];
@@ -162,13 +166,17 @@ const Header = () => {
       label: t("navbar.signup"),
     });
 
+  unauthenticatedLinks.push({
+    component: <LanguageSelector />,
+  });
+
   const { classes, cx } = useStyles();
   const items = (
     <>
       {(user ? authenticatedLinks : unauthenticatedLinks).map((link, i) => {
         if (link.component) {
           return (
-            <Box pl={5} py={15} key={i}>
+            <Box sx={{ paddingInlineStart: 5 }} py={15} key={i}>
               {link.component}
             </Box>
           );

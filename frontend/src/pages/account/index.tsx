@@ -144,7 +144,7 @@ const Account = () => {
           <Title order={5} mb="xs">
             <FormattedMessage id="account.card.info.title" />
             {user?.isLdap ? (
-              <Badge style={{ marginLeft: "1em" }}>LDAP</Badge>
+              <Badge style={{ marginInlineStart: "1em" }}>LDAP</Badge>
             ) : null}
           </Title>
           <form

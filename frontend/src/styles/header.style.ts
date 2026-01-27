@@ -12,8 +12,8 @@ export default createStyles((theme) => ({
     left: 0,
     right: 0,
     zIndex: 0,
-    borderTopRightRadius: 0,
-    borderTopLeftRadius: 0,
+    borderTopStartRadius: 0,
+    borderTopEndRadius: 0,
     borderTopWidth: 0,
     overflow: "hidden",
 

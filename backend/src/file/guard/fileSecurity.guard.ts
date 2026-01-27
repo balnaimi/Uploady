@@ -6,6 +6,7 @@ import {
 } from "@nestjs/common";
 import { Request } from "express";
 import * as moment from "moment";
+import { Prisma } from "@prisma/client";
 import { PrismaService } from "src/prisma/prisma.service";
 import { ShareSecurityGuard } from "src/share/guard/shareSecurity.guard";
 import { ShareService } from "src/share/share.service";
@@ -24,12 +25,12 @@ export class FileSecurityGuard extends ShareSecurityGuard {
   async canActivate(context: ExecutionContext) {
     const request: Request = context.switchToHttp().getRequest();
 
-    const shareId = Object.prototype.hasOwnProperty.call(
+    const shareId = (Object.prototype.hasOwnProperty.call(
       request.params,
       "shareId",
     )
       ? request.params.shareId
-      : request.params.id;
+      : request.params.id) as string;
 
     const shareToken = request.cookies[`share_${shareId}_token`];
 
@@ -48,17 +49,22 @@ export class FileSecurityGuard extends ShareSecurityGuard {
         throw new NotFoundException("File not found");
       }
 
-      if (share.security?.password)
+      type ShareWithSecurity = Prisma.ShareGetPayload<{
+        include: { security: true };
+      }>;
+      const shareWithSecurity = share as ShareWithSecurity;
+
+      if (shareWithSecurity.security?.password)
         throw new ForbiddenException("This share is password protected");
 
-      if (share.security?.maxViews && share.security.maxViews <= share.views) {
+      if (shareWithSecurity.security?.maxViews && shareWithSecurity.security.maxViews <= shareWithSecurity.views) {
         throw new ForbiddenException(
           "Maximum views exceeded",
           "share_max_views_exceeded",
         );
       }
 
-      await this._shareService.increaseViewCount(share);
+      await this._shareService.increaseViewCount(shareWithSecurity);
       return true;
     } else {
       return super.canActivate(context);

@@ -44,10 +44,10 @@ const FileSizeInput = ({
       styles={{
         input: {
           fontWeight: 500,
-          borderTopLeftRadius: 0,
-          borderBottomLeftRadius: 0,
+          borderTopStartRadius: 0,
+          borderBottomStartRadius: 0,
           width: 76,
-          marginRight: -2,
+          marginInlineEnd: -2,
         },
       }}
       onChange={(event) => {

@@ -34,7 +34,7 @@ const ThemeSwitcher = () => {
             label: (
               <Center>
                 <TbMoon size={16} />
-                <Box ml={10}>
+                <Box sx={{ marginInlineStart: 10 }}>
                   <FormattedMessage id="account.theme.dark" />
                 </Box>
               </Center>
@@ -45,7 +45,7 @@ const ThemeSwitcher = () => {
             label: (
               <Center>
                 <TbSun size={16} />
-                <Box ml={10}>
+                <Box sx={{ marginInlineStart: 10 }}>
                   <FormattedMessage id="account.theme.light" />
                 </Box>
               </Center>
@@ -56,7 +56,7 @@ const ThemeSwitcher = () => {
             label: (
               <Center>
                 <TbDeviceLaptop size={16} />
-                <Box ml={10}>
+                <Box sx={{ marginInlineStart: 10 }}>
                   <FormattedMessage id="account.theme.system" />
                 </Box>
               </Center>

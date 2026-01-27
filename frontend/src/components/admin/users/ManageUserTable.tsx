@@ -43,7 +43,7 @@ const ManageUserTable = ({
                   <td>
                     {user.username}{" "}
                     {user.isLdap ? (
-                      <Badge style={{ marginLeft: "1em" }}>LDAP</Badge>
+                      <Badge style={{ marginInlineStart: "1em" }}>LDAP</Badge>
                     ) : null}
                   </td>
                   <td>{user.email}</td>

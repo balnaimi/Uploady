@@ -25,7 +25,7 @@ Your container is now listening on `http://localhost:<externalport>`, have fun w
 
 Required tools:
 
-- [Node.js](https://nodejs.org/en/download/) >= 22
+- [Node.js](https://nodejs.org/en/download/) >= 24
 - [Git](https://git-scm.com/downloads)
 - [pm2](https://pm2.keymetrics.io/) for running Pingvin Share in the background
 

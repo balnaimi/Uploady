@@ -15,6 +15,7 @@ import "moment/min/locales";
 import { GetServerSidePropsContext } from "next";
 import type { AppProps } from "next/app";
 import Head from "next/head";
+import { Tajawal } from "next/font/google";
 import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 import { IntlProvider } from "react-intl";
@@ -32,6 +33,13 @@ import { CurrentUser } from "../types/user.type";
 import i18nUtil from "../utils/i18n.util";
 import userPreferences from "../utils/userPreferences.util";
 import Footer from "../components/footer/Footer";
+
+const tajawal = Tajawal({
+  subsets: ["arabic", "latin"],
+  weight: ["200", "300", "400", "500", "700", "800", "900"],
+  display: "swap",
+  variable: "--font-tajawal",
+});
 
 const excludeDefaultLayoutRoutes = ["/admin/config/[category]"];
 
@@ -89,6 +97,12 @@ function App({ Component, pageProps }: AppProps) {
   const language = useRef(pageProps.language);
   moment.locale(language.current);
 
+  const direction = i18nUtil.getDirectionByCode(language.current);
+
+  useEffect(() => {
+    document.documentElement.dir = direction;
+  }, [direction]);
+
   return (
     <>
       <Head>
@@ -100,12 +114,19 @@ function App({ Component, pageProps }: AppProps) {
       <IntlProvider
         messages={i18nUtil.getLocaleByCode(language.current)?.messages}
         locale={language.current}
-        defaultLocale={LOCALES.ENGLISH.code}
+        defaultLocale={LOCALES.ARABIC.code}
       >
         <MantineProvider
           withGlobalStyles
           withNormalizeCSS
-          theme={{ colorScheme, ...globalStyle }}
+          theme={{ 
+            colorScheme, 
+            ...globalStyle,
+            fontFamily: tajawal.style.fontFamily,
+            headings: {
+              fontFamily: tajawal.style.fontFamily,
+            },
+          }}
         >
           <ColorSchemeProvider
             colorScheme={colorScheme}

@@ -180,6 +180,15 @@ export default {
   "admin.button.shares": "إدارة المشاركة",
   "admin.button.config": "الإعدادات",
   "admin.version": "الإصدار",
+  // /admin/intro
+  "admin.intro.title": "مرحباً بك في Uplody",
+  "admin.intro.welcome": "مرحباً بك في Uplody",
+  "admin.intro.description": "إذا استمتعت بـ Uplody، يرجى ⭐️ إعجابك به على {github} أو {coffee} إذا كنت تريد دعم عملي.",
+  "admin.intro.fun": "كفى كلاماً، استمتع مع Uplody!",
+  "admin.intro.continue": "كيف تريد المتابعة؟",
+  "admin.intro.button.customize": "تخصيص الإعدادات",
+  "admin.intro.button.explore": "استكشف Uplody",
+  // END /admin/intro
   // END /admin
   // /admin/users
   "admin.users.title": "إدارة المستخدم",

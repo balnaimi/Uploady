@@ -239,6 +239,15 @@ export default {
   "admin.button.shares": "Share management",
   "admin.button.config": "Configuration",
   "admin.version": "Version",
+  // /admin/intro
+  "admin.intro.title": "Intro",
+  "admin.intro.welcome": "Welcome to Uplody",
+  "admin.intro.description": "If you enjoy Uplody please ⭐️ it on {github} or {coffee} if you want to support my work.",
+  "admin.intro.fun": "Enough talked, have fun with Uplody!",
+  "admin.intro.continue": "How do you want to continue?",
+  "admin.intro.button.customize": "Customize configuration",
+  "admin.intro.button.explore": "Explore Uplody",
+  // END /admin/intro
   // END /admin
 
   // /admin/users

@@ -1,11 +1,10 @@
-# <div align="center">Uplody</div>
+# Pingvin Share
 
-# <div align="center"><img  src="https://raw.githubusercontent.com/balnaimi/Uploady/cb017ac155c4e2e7e51a76dbe7f3ecbb3e1f9639/frontend/public/img/logo.png" width="40"/> </br>Uploady</div>
----
+<img src="docs/static/img/pingvinshare.svg" alt="Pingvin Share" width="200"/>
 
-Uplody is a self-hosted file sharing platform and an alternative for WeTransfer.
+Pingvin Share is a self-hosted file sharing platform and an alternative for WeTransfer.
 
-## ✨ Features
+## Features
 
 - Share files using a link
 - Unlimited file size (restricted only by disk space)
@@ -17,15 +16,15 @@ Uplody is a self-hosted file sharing platform and an alternative for WeTransfer.
 - Integration with ClamAV for security scans
 - Different file providers: local storage and S3
 
-## Get to know Uplody
+## Get to know Pingvin Share
 
-<img src="https://user-images.githubusercontent.com/58886915/225038319-b2ef742c-3a74-4eb6-9689-4207a36842a4.png" width="700"/>
+<img src="docs/static/img/image.png" alt="Pingvin Share" width="700"/>
 
-## ⌨️ Setup
+## Setup
 
 ### Installation with Docker (recommended)
 
 1. Download the `docker-compose.yml` file
 2. Run `docker compose up -d`
 
-The website is now listening on `http://localhost:3000`, have fun with Uplody!
+The website is now listening on `http://localhost:3000`, have fun with Pingvin Share!

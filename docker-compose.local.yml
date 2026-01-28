@@ -1,6 +1,7 @@
 services:
-  pingvin-share:
+  uplody:
     build: .
+    image: uplody:latest
     restart: unless-stopped
     ports:
       - 3001:3000

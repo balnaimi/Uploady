@@ -1,5 +1,5 @@
 services:
-  pingvin-share:
+  uplody:
 #    image: stonith404/pingvin-share # or ghcr.io/stonith404/pingvin-share
     image: pingvin-share-pingvin-share
     restart: unless-stopped

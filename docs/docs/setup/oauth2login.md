@@ -155,7 +155,7 @@ const getOAuthIcon = (provider: string) => {
 
 ### 5. Add i18n text
 
-Add keys below to your i18n text in [locale file](https://github.com/stonith404/pingvin-share/blob/main/frontend/src/i18n/translations/en-US.ts).
+Add keys below to your i18n text in [locale file](https://github.com/stonith404/pingvin-share/blob/main/frontend/src/i18n/translations/en.ts).
 
 - `signIn.oauth.YOUR_PROVIDER_NAME`
 - `account.card.oauth.YOUR_PROVIDER_NAME`

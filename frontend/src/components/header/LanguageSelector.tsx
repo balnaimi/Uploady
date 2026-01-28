@@ -1,13 +1,18 @@
 import { ActionIcon, Menu } from "@mantine/core";
-import { getCookie, setCookie } from "cookies-next";
-import { useState } from "react";
+import { setCookie } from "cookies-next";
+import { useEffect, useState } from "react";
 import { TbLanguage } from "react-icons/tb";
+import useLanguage from "../../hooks/language.hook";
 import { LOCALES } from "../../i18n/locales";
 
 const LanguageSelector = () => {
-  const [selectedLanguage, setSelectedLanguage] = useState(
-    getCookie("language")?.toString() || "ar",
-  );
+  const { language, setLanguage } = useLanguage();
+  const [selectedLanguage, setSelectedLanguage] = useState(language);
+
+  // Update selectedLanguage when language changes from context
+  useEffect(() => {
+    setSelectedLanguage(language);
+  }, [language]);
 
   const languages = Object.values(LOCALES).map((locale) => ({
     value: locale.code,
@@ -22,7 +27,7 @@ const LanguageSelector = () => {
         new Date().setFullYear(new Date().getFullYear() + 1),
       ),
     });
-    location.reload();
+    setLanguage(value);
   };
 
   return (

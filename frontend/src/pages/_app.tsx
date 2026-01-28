@@ -17,10 +17,11 @@ import type { AppProps } from "next/app";
 import Head from "next/head";
 import { Tajawal } from "next/font/google";
 import { useRouter } from "next/router";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { IntlProvider } from "react-intl";
 import Header from "../components/header/Header";
 import { ConfigContext } from "../hooks/config.hook";
+import { LanguageContext } from "../hooks/language.hook";
 import { UserContext } from "../hooks/user.hook";
 import { LOCALES } from "../i18n/locales";
 import authService from "../services/auth.service";
@@ -69,14 +70,6 @@ function App({ Component, pageProps }: AppProps) {
     return () => clearInterval(interval);
   }, []);
 
-  useEffect(() => {
-    if (!pageProps.language) return;
-    const cookieLanguage = getCookie("language");
-    if (pageProps.language != cookieLanguage) {
-      i18nUtil.setLanguageCookie(pageProps.language);
-      if (cookieLanguage) location.reload();
-    }
-  }, []);
 
   useEffect(() => {
     const colorScheme =
@@ -94,14 +87,36 @@ function App({ Component, pageProps }: AppProps) {
     });
   };
 
-  const language = useRef(pageProps.language);
-  moment.locale(language.current);
+  const [language, setLanguage] = useState<string>(
+    pageProps.language || getCookie("language")?.toString() || "ar",
+  );
 
-  const direction = i18nUtil.getDirectionByCode(language.current);
-
+  // Initialize language from cookie on mount if not in pageProps
   useEffect(() => {
+    if (!pageProps.language) {
+      const cookieLanguage = getCookie("language")?.toString();
+      if (cookieLanguage && cookieLanguage !== language) {
+        setLanguage(cookieLanguage);
+      }
+    }
+  }, []);
+
+  // Update moment locale when language changes
+  useEffect(() => {
+    moment.locale(language);
+  }, [language]);
+
+  // Update document direction when language changes
+  useEffect(() => {
+    const direction = i18nUtil.getDirectionByCode(language);
     document.documentElement.dir = direction;
-  }, [direction]);
+  }, [language]);
+
+  // Handle language change - update cookie and state
+  const handleLanguageChange = (newLanguage: string) => {
+    setLanguage(newLanguage);
+    i18nUtil.setLanguageCookie(newLanguage);
+  };
 
   return (
     <>
@@ -112,8 +127,8 @@ function App({ Component, pageProps }: AppProps) {
         />
       </Head>
       <IntlProvider
-        messages={i18nUtil.getLocaleByCode(language.current)?.messages}
-        locale={language.current}
+        messages={i18nUtil.getLocaleByCode(language)?.messages}
+        locale={language}
         defaultLocale={LOCALES.ARABIC.code}
       >
         <MantineProvider
@@ -135,24 +150,30 @@ function App({ Component, pageProps }: AppProps) {
             <GlobalStyle />
             <Notifications />
             <ModalsProvider>
-              <ConfigContext.Provider
+              <LanguageContext.Provider
                 value={{
-                  configVariables,
-                  refresh: async () => {
-                    setConfigVariables(await configService.list());
-                  },
+                  language,
+                  setLanguage: handleLanguageChange,
                 }}
               >
-                <UserContext.Provider
+                <ConfigContext.Provider
                   value={{
-                    user,
-                    refreshUser: async () => {
-                      const user = await userService.getCurrentUser();
-                      setUser(user);
-                      return user;
+                    configVariables,
+                    refresh: async () => {
+                      setConfigVariables(await configService.list());
                     },
                   }}
                 >
+                  <UserContext.Provider
+                    value={{
+                      user,
+                      refreshUser: async () => {
+                        const user = await userService.getCurrentUser();
+                        setUser(user);
+                        return user;
+                      },
+                    }}
+                  >
                   {excludeDefaultLayoutRoutes.includes(route) ? (
                     <Component {...pageProps} />
                   ) : (
@@ -171,8 +192,9 @@ function App({ Component, pageProps }: AppProps) {
                       </Stack>
                     </>
                   )}
-                </UserContext.Provider>
-              </ConfigContext.Provider>
+                  </UserContext.Provider>
+                </ConfigContext.Provider>
+              </LanguageContext.Provider>
             </ModalsProvider>
           </ColorSchemeProvider>
         </MantineProvider>

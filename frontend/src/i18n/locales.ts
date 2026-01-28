@@ -1,10 +1,10 @@
 import arabic from "./translations/ar";
-import english from "./translations/en-US";
+import english from "./translations/en";
 
 export const LOCALES = {
   ENGLISH: {
     name: "English",
-    code: "en-US",
+    code: "en",
     messages: english,
     direction: "ltr" as const,
   },

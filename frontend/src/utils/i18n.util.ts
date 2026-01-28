@@ -6,7 +6,7 @@ const getLocaleByCode = (code: string) => {
 };
 
 // Parse the Accept-Language header and return the first supported language
-// Only supports Arabic (ar) and English (en-US)
+// Only supports Arabic (ar) and English (en)
 const getLanguageFromAcceptHeader = (acceptLanguage?: string) => {
   if (!acceptLanguage) return "ar";
 
@@ -19,7 +19,7 @@ const getLanguageFromAcceptHeader = (acceptLanguage?: string) => {
     }
     // Check for English (en or en-*)
     if (language === "en" || language.startsWith("en-")) {
-      return "en-US";
+      return "en";
     }
   }
   

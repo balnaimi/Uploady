@@ -21,6 +21,7 @@ import Logo from "../Logo";
 import ActionAvatar from "./ActionAvatar";
 import LanguageSelector from "./LanguageSelector";
 import NavbarShareMenu from "./NavbarShareMenu";
+import ThemeSelector from "./ThemeSelector";
 
 const HEADER_HEIGHT = 60;
 
@@ -133,6 +134,9 @@ const Header = () => {
       component: <NavbarShareMenu />,
     },
     {
+      component: <ThemeSelector />,
+    },
+    {
       component: <LanguageSelector />,
     },
     {
@@ -166,6 +170,9 @@ const Header = () => {
       label: t("navbar.signup"),
     });
 
+  unauthenticatedLinks.push({
+    component: <ThemeSelector />,
+  });
   unauthenticatedLinks.push({
     component: <LanguageSelector />,
   });

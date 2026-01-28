@@ -1,6 +1,6 @@
-# Pingvin Share
+# Uplody
 
-Pingvin Share is a self-hosted file sharing platform and an alternative for WeTransfer.
+Uplody is a self-hosted file sharing platform and an alternative for WeTransfer.
 
 ## Features
 
@@ -14,7 +14,7 @@ Pingvin Share is a self-hosted file sharing platform and an alternative for WeTr
 - Integration with ClamAV for security scans
 - Different file providers: local storage and S3
 
-## Get to know Pingvin Share
+## Get to know Uplody
 
 ## Setup
 
@@ -23,4 +23,4 @@ Pingvin Share is a self-hosted file sharing platform and an alternative for WeTr
 1. Download the `docker-compose.yml` file
 2. Run `docker compose up -d`
 
-The website is now listening on `http://localhost:3000`, have fun with Pingvin Share!
+The website is now listening on `http://localhost:3000`, have fun with Uplody!

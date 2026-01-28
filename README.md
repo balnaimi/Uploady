@@ -1,7 +1,5 @@
 # Pingvin Share
 
-<img src="docs/static/img/pingvinshare.svg" alt="Pingvin Share" width="200"/>
-
 Pingvin Share is a self-hosted file sharing platform and an alternative for WeTransfer.
 
 ## Features
@@ -17,8 +15,6 @@ Pingvin Share is a self-hosted file sharing platform and an alternative for WeTr
 - Different file providers: local storage and S3
 
 ## Get to know Pingvin Share
-
-<img src="docs/static/img/image.png" alt="Pingvin Share" width="700"/>
 
 ## Setup
 

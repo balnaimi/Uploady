@@ -1,5 +1,6 @@
 # <div align="center">Uplody</div>
 
+# <div align="center"><img  src="https://raw.githubusercontent.com/balnaimi/Uploady/cb017ac155c4e2e7e51a76dbe7f3ecbb3e1f9639/frontend/public/img/logo.png" width="40"/> </br>Uploady</div>
 ---
 
 Uplody is a self-hosted file sharing platform and an alternative for WeTransfer.

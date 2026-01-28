@@ -183,7 +183,7 @@ export default {
   // /admin/intro
   "admin.intro.title": "مرحباً بك في Uplody",
   "admin.intro.welcome": "مرحباً بك في Uplody",
-  "admin.intro.description": "إذا استمتعت بـ Uplody، يرجى ⭐️ إعجابك به على {github} أو {coffee} إذا كنت تريد دعم عملي.",
+  "admin.intro.description": "إذا استمتعت بـ Uplody، نتمنى أن تستمتع باستخدامه!",
   "admin.intro.fun": "كفى كلاماً، استمتع مع Uplody!",
   "admin.intro.continue": "كيف تريد المتابعة؟",
   "admin.intro.button.customize": "تخصيص الإعدادات",

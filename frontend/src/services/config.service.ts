@@ -43,12 +43,8 @@ const sendTestEmail = async (email: string) => {
 };
 
 const isNewReleaseAvailable = async () => {
-  const response = (
-    await axios.get(
-      "https://api.github.com/repos/stonith404/pingvin-share/releases/latest",
-    )
-  ).data;
-  return response.tag_name.replace("v", "") != process.env.VERSION;
+  // Release check disabled
+  return false;
 };
 
 const changeLogo = async (file: File) => {

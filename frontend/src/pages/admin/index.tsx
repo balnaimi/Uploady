@@ -60,12 +60,6 @@ const Admin = () => {
         if (isNewReleaseAvailable) {
           setManagementOptions([
             ...managementOptions,
-            {
-              title: "Update",
-              icon: TbRefresh,
-              route:
-                "https://github.com/stonith404/pingvin-share/releases/latest",
-            },
           ]);
         }
       })

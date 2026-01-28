@@ -242,7 +242,7 @@ export default {
   // /admin/intro
   "admin.intro.title": "Intro",
   "admin.intro.welcome": "Welcome to Uplody",
-  "admin.intro.description": "If you enjoy Uplody please ⭐️ it on {github} or {coffee} if you want to support my work.",
+  "admin.intro.description": "If you enjoy Uplody, we hope you have fun using it!",
   "admin.intro.fun": "Enough talked, have fun with Uplody!",
   "admin.intro.continue": "How do you want to continue?",
   "admin.intro.button.customize": "Customize configuration",

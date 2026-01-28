@@ -28,27 +28,7 @@ const Intro = () => {
             <Title order={2}>{t("admin.intro.welcome")}</Title>
           </Center>
           <Text>
-            <FormattedMessage
-              id="admin.intro.description"
-              values={{
-                github: (
-                  <Anchor
-                    target="_blank"
-                    href="https://github.com/stonith404/pingvin-share"
-                  >
-                    GitHub
-                  </Anchor>
-                ),
-                coffee: (
-                  <Anchor
-                    target="_blank"
-                    href="https://github.com/sponsors/stonith404"
-                  >
-                    buy me a coffee
-                  </Anchor>
-                ),
-              }}
-            />
+            {t("admin.intro.description")}
           </Text>
           <Text>{t("admin.intro.fun")}</Text>
           <Text mt="lg">{t("admin.intro.continue")}</Text>

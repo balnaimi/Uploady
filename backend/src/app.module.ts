@@ -7,7 +7,6 @@ import { APP_GUARD } from "@nestjs/core";
 import { ThrottlerGuard, ThrottlerModule } from "@nestjs/throttler";
 import { AppCacheModule } from "./cache/cache.module";
 import { AppController } from "./app.controller";
-import { ClamScanModule } from "./clamscan/clamscan.module";
 import { ConfigModule } from "./config/config.module";
 import { EmailModule } from "./email/email.module";
 import { FileModule } from "./file/file.module";
@@ -35,7 +34,6 @@ import { UserModule } from "./user/user.module";
       },
     ]),
     ScheduleModule.forRoot(),
-    ClamScanModule,
     ReverseShareModule,
     OAuthModule,
     AppCacheModule,

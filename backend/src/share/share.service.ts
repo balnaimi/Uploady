@@ -10,7 +10,6 @@ import * as archiver from "archiver";
 import * as argon from "argon2";
 import * as fs from "fs";
 import * as moment from "moment";
-import { ClamScanService } from "src/clamscan/clamscan.service";
 import { ConfigService } from "src/config/config.service";
 import { EmailService } from "src/email/email.service";
 import { FileService } from "src/file/file.service";
@@ -30,7 +29,6 @@ export class ShareService {
     private config: ConfigService,
     private jwtService: JwtService,
     private reverseShareService: ReverseShareService,
-    private clamScanService: ClamScanService,
   ) {}
 
   async create(share: CreateShareDTO, user?: User, reverseShareToken?: string) {
@@ -173,9 +171,6 @@ export class ShareService {
         share.id,
       );
     }
-
-    // Check if any file is malicious with ClamAV
-    void this.clamScanService.checkAndRemove(share.id);
 
     if (share.reverseShare) {
       await this.prisma.reverseShare.update({

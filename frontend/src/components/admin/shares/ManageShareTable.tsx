@@ -12,7 +12,6 @@ import { useModals } from "@mantine/modals";
 import moment from "moment";
 import { TbLink, TbTrash } from "react-icons/tb";
 import { FormattedMessage } from "react-intl";
-import useConfig from "../../../hooks/config.hook";
 import useTranslate from "../../../hooks/useTranslate.hook";
 import { MyShare } from "../../../types/share.type";
 import { byteToHumanSizeString } from "../../../utils/fileSize.util";
@@ -30,7 +29,6 @@ const ManageShareTable = ({
 }) => {
   const modals = useModals();
   const clipboard = useClipboard();
-  const config = useConfig();
   const t = useTranslate();
 
   return (

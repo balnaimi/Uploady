@@ -1,5 +1,4 @@
 import {
-  Anchor,
   Button,
   Center,
   Container,
@@ -8,7 +7,6 @@ import {
   Title,
 } from "@mantine/core";
 import Link from "next/link";
-import { FormattedMessage } from "react-intl";
 import Logo from "../../components/Logo";
 import Meta from "../../components/Meta";
 import useTranslate from "../../hooks/useTranslate.hook";

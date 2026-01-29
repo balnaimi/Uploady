@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import httpProxyMiddleware from "next-http-proxy-middleware";
+import { API_URL } from "../../config/constants";
 
 export const config = {
   api: {
@@ -8,8 +9,6 @@ export const config = {
   },
 };
 
-const apiURL = process.env.API_URL || "http://localhost:8080";
-
 // A proxy to the API server only used in development.
 // In production this route gets overridden by Caddy.
 export default (req: NextApiRequest, res: NextApiResponse) => {
@@ -17,6 +16,6 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
     headers: {
       "X-Forwarded-For": req.socket?.remoteAddress ?? "",
     },
-    target: apiURL,
+    target: API_URL,
   });
 };

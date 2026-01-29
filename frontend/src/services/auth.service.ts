@@ -47,8 +47,8 @@ const refreshAccessToken = async () => {
     ) {
       await api.post("/auth/token");
     }
-  } catch (e) {
-    console.info("Refresh token invalid or expired");
+  } catch {
+    // Refresh token invalid or expired - silently ignore
   }
 };
 

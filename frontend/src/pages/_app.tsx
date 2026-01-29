@@ -34,6 +34,7 @@ import { CurrentUser } from "../types/user.type";
 import i18nUtil from "../utils/i18n.util";
 import userPreferences from "../utils/userPreferences.util";
 import Footer from "../components/footer/Footer";
+import { API_URL } from "../config/constants";
 
 const tajawal = Tajawal({
   subsets: ["arabic", "latin"],
@@ -220,16 +221,15 @@ App.getInitialProps = async ({ ctx }: { ctx: GetServerSidePropsContext }) => {
   };
 
   if (ctx.req) {
-    const apiURL = process.env.API_URL || "http://localhost:8080";
     const cookieHeader = ctx.req.headers.cookie;
 
-    pageProps.user = await axios(`${apiURL}/api/users/me`, {
+    pageProps.user = await axios(`${API_URL}/api/users/me`, {
       headers: { cookie: cookieHeader },
     })
       .then((res) => res.data)
       .catch(() => null);
 
-    pageProps.configVariables = (await axios(`${apiURL}/api/configs`)).data;
+    pageProps.configVariables = (await axios(`${API_URL}/api/configs`)).data;
 
     pageProps.route = ctx.req.url;
 

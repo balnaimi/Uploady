@@ -1,5 +1,6 @@
 import { jwtDecode } from "jwt-decode";
 import { NextRequest, NextResponse } from "next/server";
+import { API_URL } from "./config/constants";
 import configService from "./services/config.service";
 
 // This middleware redirects based on different conditions:
@@ -28,8 +29,7 @@ export async function middleware(request: NextRequest) {
   };
 
   // Get config from backend
-  const apiUrl = process.env.API_URL || "http://localhost:8080";
-  const config = await (await fetch(`${apiUrl}/api/configs`)).json();
+  const config = await (await fetch(`${API_URL}/api/configs`)).json();
 
   const getConfig = (key: string) => {
     return configService.get(key, config);

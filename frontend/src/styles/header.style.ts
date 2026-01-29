@@ -9,8 +9,8 @@ export default createStyles((theme) => ({
   dropdown: {
     position: "absolute",
     top: 60,
-    left: 0,
-    right: 0,
+    insetInlineStart: 0,
+    insetInlineEnd: 0,
     zIndex: 0,
     borderTopStartRadius: 0,
     borderTopEndRadius: 0,

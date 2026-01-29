@@ -31,7 +31,7 @@ const ConfigurationHeader = ({
             onClick={() => setIsMobileNavBarOpened((o) => !o)}
             size="sm"
             color={theme.colors.gray[6]}
-            mr="xl"
+            sx={{ marginInlineEnd: theme.spacing.xl }}
           />
         </MediaQuery>
         <Group position="apart" w="100%">

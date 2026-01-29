@@ -17,8 +17,10 @@ import { useRouter } from "next/router";
 import { TbArrowLeft } from "react-icons/tb";
 import { FormattedMessage } from "react-intl";
 import * as yup from "yup";
+import useLanguage from "../../../hooks/language.hook";
 import useTranslate from "../../../hooks/useTranslate.hook";
 import authService from "../../../services/auth.service";
+import i18nUtil from "../../../utils/i18n.util";
 import toast from "../../../utils/toast.util";
 
 const useStyles = createStyles((theme) => ({
@@ -46,6 +48,8 @@ const ResetPassword = () => {
   const { classes } = useStyles();
   const router = useRouter();
   const t = useTranslate();
+  const { language } = useLanguage();
+  const direction = i18nUtil.getDirectionByCode(language);
 
   const form = useForm({
     initialValues: {
@@ -96,7 +100,7 @@ const ResetPassword = () => {
               href={"/auth/signIn"}
             >
               <Center inline>
-                <TbArrowLeft size={12} />
+                <TbArrowLeft size={12} style={{ transform: direction === "rtl" ? "scaleX(-1)" : "none" }} />
                 <Box sx={{ marginInlineStart: 5 }}>
                   <FormattedMessage id="resetPassword.button.back" />
                 </Box>

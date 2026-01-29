@@ -4,17 +4,17 @@ import i18nUtil from "../utils/i18n.util";
 
 const getInitialProps = createGetInitialProps();
 
-export default class _Document extends Document<{ dir?: string }> {
+export default class _Document extends Document<{ dir?: string; lang?: string }> {
   static getInitialProps = async (ctx: any) => {
     const initialProps = await getInitialProps(ctx);
     const language = ctx.req?.cookies?.["language"] ?? "ar";
     const direction = i18nUtil.getDirectionByCode(language);
-    return { ...initialProps, dir: direction };
+    return { ...initialProps, dir: direction, lang: language };
   };
 
   render() {
     return (
-      <Html dir={this.props.dir || "rtl"}>
+      <Html dir={this.props.dir || "rtl"} lang={this.props.lang || "ar"}>
         <Head>
           <link rel="manifest" href="/manifest.json" />
           <link rel="icon" type="image/x-icon" href="/img/favicon.ico" />

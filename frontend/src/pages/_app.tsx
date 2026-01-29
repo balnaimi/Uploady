@@ -137,6 +137,7 @@ function App({ Component, pageProps }: AppProps) {
           theme={{ 
             colorScheme, 
             ...globalStyle,
+            dir: i18nUtil.getDirectionByCode(language),
             fontFamily: tajawal.style.fontFamily,
             headings: {
               fontFamily: tajawal.style.fontFamily,

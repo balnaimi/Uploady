@@ -15,8 +15,10 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { ReactNode, useEffect, useState } from "react";
 import useConfig from "../../hooks/config.hook";
+import useLanguage from "../../hooks/language.hook";
 import useUser from "../../hooks/user.hook";
 import useTranslate from "../../hooks/useTranslate.hook";
+import i18nUtil from "../../utils/i18n.util";
 import Logo from "../Logo";
 import ActionAvatar from "./ActionAvatar";
 import LanguageSelector from "./LanguageSelector";
@@ -41,8 +43,8 @@ const useStyles = createStyles((theme) => ({
   dropdown: {
     position: "absolute",
     top: HEADER_HEIGHT,
-    left: 0,
-    right: 0,
+    insetInlineStart: 0,
+    insetInlineEnd: 0,
     zIndex: 0,
     borderTopStartRadius: 0,
     borderTopEndRadius: 0,
@@ -116,6 +118,8 @@ const Header = () => {
   const router = useRouter();
   const config = useConfig();
   const t = useTranslate();
+  const { language } = useLanguage();
+  const direction = i18nUtil.getDirectionByCode(language);
 
   const [opened, toggleOpened] = useDisclosure(false);
 
@@ -221,7 +225,7 @@ const Header = () => {
           className={classes.burger}
           size="sm"
         />
-        <Transition transition="pop-top-right" duration={200} mounted={opened}>
+        <Transition transition={direction === "rtl" ? "pop-top-left" : "pop-top-right"} duration={200} mounted={opened}>
           {(styles) => (
             <Paper className={classes.dropdown} withBorder style={styles}>
               <Stack spacing={0}> {items}</Stack>

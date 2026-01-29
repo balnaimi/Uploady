@@ -19,6 +19,15 @@ const GlobalStyle = () => {
           paddingInlineStart: "0.5em",
           paddingInlineEnd: "0.5em",
         },
+        // RTL fix for PasswordInput visibility toggle button
+        '[dir="rtl"] .mantine-PasswordInput-rightSection': {
+          right: "unset",
+          left: 0,
+        },
+        '[dir="rtl"] .mantine-PasswordInput-innerInput': {
+          paddingRight: "0.75rem !important",
+          paddingLeft: "calc(2.25rem + 0.625rem) !important",
+        },
       })}
     />
   );
